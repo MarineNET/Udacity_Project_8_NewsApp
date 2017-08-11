@@ -34,16 +34,10 @@ public class NewsAdapter extends ArrayAdapter<News>{
         title.setText(currentNews.getTitle());
 
         TextView sectionName = (TextView) listView.findViewById(R.id.section);
-        sectionName.setText(currentNews.getSectionName());
+        sectionName.setText("Section: " + currentNews.getSectionName());
 
         TextView publishedDate = (TextView) listView.findViewById(R.id.date);
-        // Create a new Date object and pass the value in millisecs
-//        Date newDate = new Date(currentNews.getDatePublished());
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
-//        // Attach the formatter to the date, and store it in a String
-//        String dateToDisplay = dateFormat.format(newDate);
-//        publishedDate.setText(dateToDisplay);
-        publishedDate.setText(currentNews.getDatePublished());
+        publishedDate.setText("Date published: " + currentNews.getDatePublished());
 
         return listView;
     }

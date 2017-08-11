@@ -1,14 +1,18 @@
 package viktorkhon.com.udacity_project_8_newsapp;
 
 import android.app.LoaderManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +32,16 @@ implements LoaderManager.LoaderCallbacks<List<News>> {
         setContentView(R.layout.activity_main);
 
         newsAdapter = new NewsAdapter(this, new ArrayList<News>());
+        TextView emptyView = (TextView) findViewById(R.id.emptyText);
 
         ListView newsView = (ListView) findViewById(R.id.newsListView);
         newsView.setAdapter(newsAdapter);
-        getLoaderManager().initLoader(0, null, MainActivity.this);
+        if (isConnected()) {
+            getLoaderManager().initLoader(0, null, MainActivity.this);
+            emptyView.setText("");
+        } else {
+            emptyView.setText(R.string.no_internet);
+        }
 
         newsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -46,6 +56,25 @@ implements LoaderManager.LoaderCallbacks<List<News>> {
                 }
             }
         });
+    }
+
+    final boolean isConnected() {
+        // Class that answers queries about the state of network connectivity.
+        // It also notifies applications when network connectivity changes.
+        ConnectivityManager cm = (ConnectivityManager)
+                // Context.CONNECTIVITY_SERVICE:
+                // Use with getSystemService(Class) to retrieve a ConnectivityManager for handling
+                // management of network connections.
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        // Describes the status of a network interface.
+        // Use getActiveNetworkInfo() to get an instance that represents the current network connection.
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        // isConnectedOrConnecting - Indicates whether network connectivity exists or is
+        // in the process of being established
+        return activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
     }
 
     @Override
