@@ -7,15 +7,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Viktor Khon on 8/9/2017.
  */
 
-public class NewsAdapter extends ArrayAdapter<News>{
+public class NewsAdapter extends ArrayAdapter<News> {
 
     public NewsAdapter(Activity context, List<News> news) {
         super(context, 0, news);

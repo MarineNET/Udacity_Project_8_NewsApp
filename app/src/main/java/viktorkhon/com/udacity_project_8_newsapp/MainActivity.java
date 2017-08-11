@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity
 implements LoaderManager.LoaderCallbacks<List<News>> {
 
     public static final String LOG_TAG = MainActivity.class.getName();
-    private static final String JSON_REQUEST =
+    private static final String API_URL =
     "http://content.guardianapis.com/us/technology?order-by=newest&api-key=test&q=technology&from-date=2017-01-01&page=1";
 
     private NewsAdapter newsAdapter;
@@ -79,7 +79,7 @@ implements LoaderManager.LoaderCallbacks<List<News>> {
 
     @Override
     public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
-        return new NewsLoader(this, JSON_REQUEST);
+        return new NewsLoader(this, API_URL);
     }
 
     @Override
