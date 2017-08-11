@@ -1,6 +1,7 @@
 package viktorkhon.com.udacity_project_8_newsapp;
 
 import android.app.Activity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -22,7 +23,10 @@ public class NewsAdapter extends ArrayAdapter<News>{
 
     @Override
     public View getView(int position, View listView, ViewGroup parent) {
-        super.getView(position, listView, parent);
+        if (listView == null) {
+            listView = LayoutInflater.from(getContext()).inflate(
+                    R.layout.item_list, parent, false);
+        }
 
         News currentNews = getItem(position);
 
@@ -35,7 +39,7 @@ public class NewsAdapter extends ArrayAdapter<News>{
         TextView publishedDate = (TextView) listView.findViewById(R.id.date);
         // Create a new Date object and pass the value in millisecs
         Date newDate = new Date(currentNews.getDatePublished());
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMMMMMM dd, yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
         // Attach the formatter to the date, and store it in a String
         String dateToDisplay = dateFormat.format(newDate);
         publishedDate.setText(dateToDisplay);
@@ -43,4 +47,5 @@ public class NewsAdapter extends ArrayAdapter<News>{
         return listView;
     }
 }
+
 
