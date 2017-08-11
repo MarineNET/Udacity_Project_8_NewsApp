@@ -15,6 +15,12 @@ import java.util.List;
 
 public class NewsAdapter extends ArrayAdapter<News> {
 
+    static class ViewHolder {
+        private TextView title;
+        private TextView sectionName;
+        private TextView publishedDate;
+    }
+
     public NewsAdapter(Activity context, List<News> news) {
         super(context, 0, news);
     }
@@ -28,14 +34,16 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         News currentNews = getItem(position);
 
-        TextView title = (TextView) listView.findViewById(R.id.title);
-        title.setText(currentNews.getTitle());
+        ViewHolder holder = new ViewHolder();
 
-        TextView sectionName = (TextView) listView.findViewById(R.id.section);
-        sectionName.setText("Section: " + currentNews.getSectionName());
+        holder.title = (TextView) listView.findViewById(R.id.title);
+        holder.title.setText(currentNews.getTitle());
 
-        TextView publishedDate = (TextView) listView.findViewById(R.id.date);
-        publishedDate.setText("Date published: " + currentNews.getDatePublished());
+        holder.sectionName = (TextView) listView.findViewById(R.id.section);
+        holder.sectionName.setText("Section: " + currentNews.getSectionName());
+
+        holder.publishedDate = (TextView) listView.findViewById(R.id.date);
+        holder.publishedDate.setText("Date published: " + currentNews.getDatePublished());
 
         return listView;
     }
