@@ -38,11 +38,12 @@ public class NewsAdapter extends ArrayAdapter<News>{
 
         TextView publishedDate = (TextView) listView.findViewById(R.id.date);
         // Create a new Date object and pass the value in millisecs
-        Date newDate = new Date(currentNews.getDatePublished());
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
-        // Attach the formatter to the date, and store it in a String
-        String dateToDisplay = dateFormat.format(newDate);
-        publishedDate.setText(dateToDisplay);
+//        Date newDate = new Date(currentNews.getDatePublished());
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
+//        // Attach the formatter to the date, and store it in a String
+//        String dateToDisplay = dateFormat.format(newDate);
+//        publishedDate.setText(dateToDisplay);
+        publishedDate.setText(currentNews.getDatePublished());
 
         return listView;
     }

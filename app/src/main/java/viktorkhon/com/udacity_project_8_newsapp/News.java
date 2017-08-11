@@ -8,10 +8,10 @@ public class News {
 
     private String mTitle;
     private String mSectionName;
-    private long mDatePublished;
+    private String mDatePublished;
     private String mWebUrl;
 
-    public News(String title, String sectionName, long datePublished, String webUrl) {
+    public News(String title, String sectionName, String datePublished, String webUrl) {
         mTitle = title;
         mSectionName = sectionName;
         mDatePublished = datePublished;
@@ -26,7 +26,7 @@ public class News {
         return mSectionName;
     }
 
-    public long getDatePublished() {
+    public String getDatePublished() {
         return mDatePublished;
     }
 

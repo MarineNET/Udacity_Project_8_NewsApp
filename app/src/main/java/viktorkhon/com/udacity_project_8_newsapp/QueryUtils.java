@@ -120,7 +120,7 @@ public class QueryUtils {
                 String title = result.getString("webTitle");
                 String sectionName = result.getString("sectionName");
                 String webUrl = result.getString("webUrl");
-                long date = result.getLong("webPublicationDate");
+                String date = result.getString("webPublicationDate");
 
                 news.add(new News(title, sectionName, date, webUrl));
             }
