@@ -1,9 +1,13 @@
 package viktorkhon.com.udacity_project_8_newsapp;
 
 import android.app.LoaderManager;
+import android.content.Intent;
 import android.content.Loader;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -28,6 +32,20 @@ implements LoaderManager.LoaderCallbacks<List<News>> {
         ListView newsView = (ListView) findViewById(R.id.newsListView);
         newsView.setAdapter(newsAdapter);
         getLoaderManager().initLoader(0, null, MainActivity.this);
+
+        newsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                News news = newsAdapter.getItem(position);
+
+                Uri uri = Uri.parse(news.getWebUrl());
+                Intent openBrowser = new Intent(Intent.ACTION_VIEW, uri);
+                // Send the intent to launch a new activity
+                if (openBrowser.resolveActivity(getPackageManager()) != null) {
+                    startActivity(openBrowser);
+                }
+            }
+        });
     }
 
     @Override
