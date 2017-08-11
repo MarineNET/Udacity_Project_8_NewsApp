@@ -92,7 +92,7 @@ public class QueryUtils {
             // existing text
             stringBuilder.append(line);
             // get the next line, until run out of lines
-            bufferedReader.readLine();
+            line = bufferedReader.readLine();
         }
         // return a full JSON String
         return stringBuilder.toString();
